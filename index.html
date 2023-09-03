@@ -1,0 +1,251 @@
+<html><!-- Pocket PC Devices -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="IBrowse_Scanner" content="Enabled">
+    <meta http-equiv="IBrowse_Code128" content="Enabled">
+    <meta http-equiv="IBrowse_ScannerNavigate" content="JavaScript:onScan('%s', '%s', '%s');">
+    <SCRIPT>function onScan(data, type, time) { wdsubmitFnKey(this, 'BarCodeReader', 'BUTTONCLICK', { 'ControlId': 'CAACEHKN.Pickingunitario_checkoutView.BarCodeReader', 'data': data, 'type': type }, '', true);; }</script>
+    <title>Automacao</title>
+
+    <script>
+        eventQueue = [];
+        blockEvent = false;
+        htmlRefValue = "";
+        parameterValue = [];
+        controlRefType = '';
+
+        function wdsubmitFnKey(htmlRef, controlType, urEventName, parameters, path, flushQueue) {
+            htmlRefValue = htmlRef;
+            parameterValue = parameters;
+            controlRefType = controlType;
+            FunctionKeyFn.style.display = "inline";
+            FunctionKeyFn.focus();
+            FunctionKeyFn.click();
+        }
+
+        function wdFnKeyButton() {
+            FunctionKeyFn.style.display = "none";
+            wdsubmit(htmlRefValue, controlRefType, 'BUTTONCLICK', parameterValue, '', true);
+            htmlRefValue = "";
+            parameterValue = [];
+            controlRefType = '';
+        }
+        function wdsubmit(htmlRef, controlType, urEventName, parameters, path, flushQueue) {
+            var rc = false;
+            if (blockEvent) return false;
+
+            if (urEventName) {
+                if (!parameters) parameters = {};
+                parameters.ContextPath = path;
+                switch (urEventName) {
+                    case "INPUTFIELDCHANGE":
+                    case "TEXTEDITONCHANGE":
+                    case "PAGINPUTFIELDCHANGE":
+                        parameters.Value = htmlRef.value;
+                        flushQueue = false;
+                        rc = true;
+                        break;
+                    case "DROPDOWNLISTBOXSELECTIONCHANGE":
+                        parameters.Value = htmlRef.value;
+                        break;
+
+                    case "CHECKBOXCLICK":
+                        parameters.Value = htmlRef.value;
+                        rc = true;
+                        break;
+                    case "TREENODEKEYDOWN":
+                        parameters.KeyCode = browserEvent.keyCode;
+                        break;
+                    case "TREENODETOGGLE":
+                        flushQueue = true;
+                        break;
+                }
+
+                if (parameters.ControlId) parameters.Id = parameters.ControlId;
+
+                switch (controlType) {
+                    case "TableView":
+                        parameters.Id = parameters.TableId;
+                        break;
+                    case "Tree":
+                        parameters.Id = parameters.NodeId ? parameters.NodeId : parameters.TreeId;
+                        break;
+                }
+                var modifiers = 0;
+                modifiers |= 1 << 1;
+                parameters.Modifiers = modifiers;
+
+                var transportForm = document.forms[1]; //_SSR_TransportForm
+                eventContainer = [];
+                eventContainer.push(urEventName);
+
+                for (var i in parameters) if (i.charCodeAt(0) != 95) {
+                    eventContainer.push(i);
+                    eventContainer.push(parameters[i]);
+                }
+                eventQueue.push(eventContainer.join("\ue002"));
+
+                if (flushQueue) {
+                    transportForm.elements.eventQueue.value = eventQueue.join("\ue001");
+                    eventQueue = [];
+                    transportForm.submit();
+                    blockEvent = true;
+                }
+            }
+            return rc;
+        }
+    </script>
+</head>
+
+<body>
+    <form name="data" method="POST" action="">
+        <div>
+            <div id="CAACEHKN.Pickingunitario_checkoutView.RootElement">
+                <div id="CAACEHKN.Pickingunitario_checkoutView.TransparentContainerHeaderData">
+                    <table id="CAACEHKN.Pickingunitario_checkoutView._2" cellspacing="0" cellpadding="0" width="100%"
+                        border="0">
+                        <tr>
+                            <td align="LEFT"><img border="0" src="img/ico12_msg_warning.gif"><img width="6" height="6"
+                                    src="img/1x1.gif">Modo&#x20;Leitura&#x3a;&#x20;Etiqueta&#x20;Unit&#xe1;rio
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT" valign="TOP">
+                                <div id="CAACEHKN.Pickingunitario_checkoutView.TransparentContainerButtonNav">
+                                    <table id="CAACEHKN.Pickingunitario_checkoutView._5" cellspacing="0" cellpadding="0"
+                                        width="100%" border="0">
+                                        <tr>
+                                            <td align="LEFT"></td>
+                                            <td align="RIGHT"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Check-Out&#x20;Picking&#x20;Unit&#xe1;rio</b></td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT"><span></span></td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT">
+                                <table border="0">
+                                    <tr>
+                                        <td><img hspace="4" src="img/3x12_label_designbar_large.gif">
+                                        </td>
+                                        <td>DT</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT"><input type="Text" disabled="true"
+                                    id="CAACEHKN.Pickingunitario_checkoutView.InputFieldDT"
+                                    name="CAACEHKN.Pickingunitario_checkoutView.InputFieldDT"></td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT">
+                                <table border="0">
+                                    <tr>
+                                        <td><img hspace="4" src="img/3x12_label_designbar_large.gif">
+                                        </td>
+                                        <td>Remessa</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT"><input type="Text" disabled="true"
+                                    id="CAACEHKN.Pickingunitario_checkoutView.InputFieldRemessa"
+                                    name="CAACEHKN.Pickingunitario_checkoutView.InputFieldRemessa"></td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT">
+                                <table border="0">
+                                    <tr>
+                                        <td><img hspace="4" src="img/3x12_label_designbar_large.gif">
+                                        </td>
+                                        <td>NF-e</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT"><input type="Text" disabled="true" size="9"
+                                    id="CAACEHKN.Pickingunitario_checkoutView.InputFieldNFE"
+                                    name="CAACEHKN.Pickingunitario_checkoutView.InputFieldNFE"></td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT">
+                                <table border="0">
+                                    <tr>
+                                        <td><img hspace="4" src="img/3x12_label_designbar_large.gif">
+                                        </td>
+                                        <td>Pallet&#x20;Esgotamento</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT"><input type="Text" disabled="true" size="5"
+                                    id="CAACEHKN.Pickingunitario_checkoutView.InputFieldVolume"
+                                    name="CAACEHKN.Pickingunitario_checkoutView.InputFieldVolume"></td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT">
+                                <table border="0">
+                                    <tr>
+                                        <td><img hspace="4" src="img/3x12_label_designbar_large.gif">
+                                        </td>
+                                        <td>Etiqueta</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="LEFT" valign="TOP">
+                                <div id="CAACEHKN.Pickingunitario_checkoutView.TransparentContainerEtiqueta"><input
+                                        type="Text" size="20"
+                                        id="CAACEHKN.Pickingunitario_checkoutView.InputFieldEtiqueta"
+                                        name="CAACEHKN.Pickingunitario_checkoutView.InputFieldEtiqueta"
+                                        onchange="return wdsubmit(this,'InputField','INPUTFIELDCHANGE',{'ControlId':'CAACEHKN.Pickingunitario_checkoutView.InputFieldEtiqueta','event':'event'},'',false);"><input
+                                        type="button" value="OK"
+                                        name="CAACEHKN.Pickingunitario_checkoutView.ButtonOkEtiqueta"
+                                        onclick="return wdsubmit(this,'Button','BUTTONCLICK',{'ControlId':'CAACEHKN.Pickingunitario_checkoutView.ButtonOkEtiqueta'},'',true);">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="Sair"
+                                    name="CAACEHKN.Pickingunitario_checkoutView.SairButton"
+                                    onclick="return wdsubmit(this,'Button','BUTTONCLICK',{'ControlId':'CAACEHKN.Pickingunitario_checkoutView.SairButton'},'',true);">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form name="_SSR_Form" method="POST"
+        action="../../hypermarcas.com.br/automacao/Automacao?sap-wd-cltwndid=42689b744a8b11ee9ff100000a9364c6&sap-wd-secure-id=Rn1YQAf9gM5ptaBf3gSLNg%3D%3D&sap-wd-appwndid=42689b754a8b11ee954600000a9364c6&sap-wd-norefresh=X&sap-wd-client=Pie03Client">
+        <input type="HIDDEN" name="sap-wd-cltwndid" value="42689b744a8b11ee9ff100000a9364c6" />
+        <input type="HIDDEN" name="sap-wd-appwndid" value="42689b754a8b11ee954600000a9364c6" />
+        <input type="HIDDEN" name="sap-wd-secure-id" value="Rn1YQAf9gM5ptaBf3gSLNg==" />
+        <input type="HIDDEN" name="sap-wd-norefresh" value="X" />
+        <input type="HIDDEN" name="eventQueue" value="" />
+    </form>
+    <input type="button" name="FunctionKeyFn" value="" style="display:none" onclick="JavaScript:wdFnKeyButton();">
+    <script>
+
+        function setFocus(id) {
+            // var element = document.all.item(id);
+            var element = document.data.elements.item(id);
+            element.focus();
+        }     
+    </script>
+</body>
+
+</html>
